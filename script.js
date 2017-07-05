@@ -15,31 +15,23 @@ function firstNotRepeatingCharacter(s) {
 }
 firstNotRepeatingCharacter();
 
-// You are given an n x n 2D matrix that represents an image. Rotate the image by 90 degrees (clockwise). It looks it needs more debugging.
-/* sample input: arr = [[1, 2, 3],
-						[4, 5, 6],
- 						[7, 8, 9]]
-*/
-function rotateImage(a) {
-  var n = a.length
+// You are given an n x n 2D matrix that represents an image. Rotate the image by 90 degrees (clockwise). 
+function rotateImage(a) { 
+  let len = a.length
+   for (i = 0; i < len; i++, len--) {  
+     let end = len - 1;  
+     for ( j = i; j < end; j++) {  
+       let tail = a.length - j - 1;  
 
-  for (i = 0; i < n / 2; i++) {
-			var first = i; 
-    
-			var last = n - 1 - i;
-			for (j = first; j < last; j++) {
-				var offset = j - first;
-				var top = a[first][j];
-				a[first][j] = a[last - offset][first];
-				a[last - offset][first] = a[last][last - offset];
-				a[last - offset][last] = a[j][last];
-				a[j][last] = top;
-			}
-		}
-		
-    return a
+      let temp = a[i][j];  
+       a[i][j] = a[tail][i];  
+       a[tail][i] = a[end][tail];  
+       a[end][tail] = a[j][end];   
+       a[j][end] = temp;  
+     }  
+   }  
+   return a
 }
-rotateImage(arr);
 
 // digital root : return the sum of the two digits of a number until a single digit sum is left
 
